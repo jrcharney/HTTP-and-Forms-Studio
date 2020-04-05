@@ -1,19 +1,67 @@
 <!doctype html>
-
+<html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Jason Charney">
+	<title>Studio 25 - Searching like it's 1997!</title>
+	<link rel="stylesheet" href="./styles.css" />
 	<script>
-		// TODO: create a handler
+	// create a handler
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		let form = document.getElementById("searchForm");
+		let actions = {
+			"google" : "https://www.google.com/search",	// rejected (Fix this later)
+			"duckDuckGo" : "https://duckduckgo.com/",	// blank
+			"bing" : "https://www.bing.com/search",		// worked
+			"ask": "https://www.ask.com/web"			// blank
+			// TODO: Yahoo
+		};
+
+		function setSearchEngine(event){
+			let engine    = document.querySelector('input[name=engine]:checked').value;
+			let actionURL = actions[engine];
+			form.setAttribute('action',actionURL);
+		}
+
+		// register the handler
+		form.addEventListener('submit',setSearchEngine);
+
     });
 	</script>
 </head>
-
 <body>
-
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
-	</form>
-
+	<div id="notice">
+		<!-- TODO: Make this a floating notice that hides away -->
+		<p><b>Note</b>: This studio was previously done on <a href="https://repl.it/@AndyYang8/14-Studio-Jeremine">Repl.it</a>. Oh well. Practice makes perfect.</p>
+	</div>
+	<header>
+		<h2>Searching like it is </h2>
+		<h1>Nineteen Ninety Seven</h1>
+	</header>
+	<main>
+		<form id="searchForm" method="get">
+			<fieldset id="searchEngines">
+				<legend>Search With:</legend>
+				<label><input type="radio" name="engine" value="google" checked>Google</label>
+				<label><input type="radio" name="engine" value="duckDuckGo">DuckDuckGo</label>
+				<label><input type="radio" name="engine" value="bing">Bing</label>
+				<label><input type="radio" name="engine" value="ask">Ask</label>
+			</fieldset>
+			<div class="sidebyside">
+				<div id="queryfield">
+					<input type="text" name="q" value="" placeholder="Search">
+				</div>
+				<div id="goButton">
+					<input type="submit" value="Go!">
+				</div>
+			</div>
+    	<!-- TODO: add form elements -->
+		</form>
+	</main>
+	<footer>
+		<hr>
+		<p>&copy; 2020 | A JRCharney Production</p>
+	</footer>
 </body>
+</html>
